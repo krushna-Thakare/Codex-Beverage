@@ -54,7 +54,7 @@ SELECT c.City,Tier,count(c.city) as respondents,
 round(count(c.city)*100.0/ sum(count(c.city)) over(),2) as percentage
 from beverage b join repondents r on b.Respondent_ID=r.Respondent_ID 
                 join cities c on r.City_ID= c.City_ID
-WHERE fr.Brand_perception = "Negative" or fr.Brand_perception = "Neutral" and Current_brands = 'codex'
+WHERE b.Brand_perception = "Negative" or b.Brand_perception = "Neutral" and Current_brands = 'codex'
 group by c.City,Tier
 order by percentage DESC
 -------------------------------------------------------------------------------------------
