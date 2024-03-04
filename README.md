@@ -39,13 +39,13 @@ Codex's target audience comprises young adults aged 19-30, including individuals
    * Participate in major local events to showcase the product and gather feedback.
 
 ## Implementation
-Phase 1: Brand Awareness:
+* Phase 1: Brand Awareness:
 Focus on social media marketing and influencer partnerships.
 
-Phase 2: Market Expansion:
+* Phase 2: Market Expansion:
 Expand distribution channels, particularly through e-commerce platforms and retail outlets.
 
-Phase 3: Brand Perception:
+* Phase 3: Brand Perception:
 Implement public relations campaigns and customer engagement initiatives to enhance brand image.
 
 ## Evaluation
