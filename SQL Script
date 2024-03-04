@@ -2,7 +2,7 @@
 /*1. What are the preferred ingredients of energy drinks among respondents?*/
 
 select count(Response_ID) as respondent,Ingredients_expected
-from beverage
+from fact_survey_responses
 group by Ingredients_expected
 order by respondent desc
 -------------------------------------------------------------------------------------------
@@ -10,7 +10,7 @@ order by respondent desc
 /*2. What packaging preferences do respondents have for energy drinks?*/
 
 select Packaging_preference,count(Response_ID) as respondents
-from beverage
+from fact_survey_responses
 group by Packaging_preference
 order by respondents desc
 -------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ order by respondents desc
 /* 3. Who are the current market leaders?*/
 
 select Current_brands,count(Response_ID) as respondents
-from beverage
+from fact_survey_responses
 Group by Current_brands
 order by respondents desc
 -------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ order by respondents desc
 /* 4. Who prefers energy drink more? */
 
 select Gender,count(Respondent_ID) as respondents
-from repondents
+from dim_repondents
 group by Gender
 order by respondents
 -------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ order by respondents
 /* 5. Which age group prefers energy drinks more?*/
 
 select age,count(Respondent_ID) as respondents
-from repondents
+from dim_repondents
 group by age
 order by respondents desc
 -------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ order by respondents desc
 /* 6. Which type of marketing reaches the most Youth (15-30)?*/
 
 SELECT Marketing_channels, count(Response_ID) AS respondent 
-FROM beverage b JOIN repondents r ON b.Respondent_ID = r.Respondent_ID
+FROM fact_survey_responses f JOIN dim_repondents r  ON f.Respondent_ID = r.Respondent_ID
 WHERE r.Age between '15-18' and '19-30'
 GROUP BY Marketing_channels
 ORDER BY respondent DESC;
@@ -52,9 +52,9 @@ ORDER BY respondent DESC;
 
 SELECT c.City,Tier,count(c.city) as respondents,
 round(count(c.city)*100.0/ sum(count(c.city)) over(),2) as percentage
-from beverage b join repondents r on b.Respondent_ID=r.Respondent_ID 
-                join cities c on r.City_ID= c.City_ID
-WHERE b.Brand_perception = "Negative" or b.Brand_perception = "Neutral" and Current_brands = 'codex'
+from fact_survey_responses f join dim_repondents r on f.Respondent_ID=r.Respondent_ID 
+                             join dim_cities c   on r.City_ID= c.City_ID
+WHERE f.Brand_perception = "Negative" or f.Brand_perception = "Neutral" and Current_brands = 'codex'
 group by c.City,Tier
 order by percentage DESC
 -------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ order by percentage DESC
 /* 8. What are the primary reasons consumers prefer those brands over ours?*/
 
 select Reasons_for_choosing_brands,count(Response_ID)
-from beverage
+from fact_survey_responses
 where Current_brands <> 'codex'
 group by Reasons_for_choosing_brands
 -------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ group by Reasons_for_choosing_brands
 /* 9. Which marketing channel can be used to reach more customers?*/
 
 select Marketing_channels,count(Response_ID) as respondents
-from beverage
+from fact_survey_responses
 group by Marketing_channels
 order by respondents desc;
 -------------------------------------------------------------------------------------------
@@ -78,18 +78,18 @@ order by respondents desc;
 /* 10. What do people think about our brand?*/
 
 SELECT Heard_before, COUNT(Respondent_ID) AS Count_of_Response
-FROM beverage
+FROM fact_survey_responses
 GROUP BY Heard_before
 ORDER BY Count_of_Response DESC;
 
 Select Taste_experience,count(Response_ID) as respondent
-from  beverage
+from  fact_survey_responses
 where  Heard_before= 'Yes' and Tried_before='yes'
 group by Taste_experience
 order by respondent desc
 
 Select Taste_experience,count(Response_ID) as respondent
-from  beverage
+from  fact_survey_responses
 where  Heard_before= 'Yes' 
 group by Taste_experience
 order by respondent desc;
@@ -102,9 +102,9 @@ SELECT
       c.Tier, 
       count(c.City) AS 'Response', 
   	  round(count(c.City) * 100.0 / sum(count(c.City)) OVER (), 2) AS Percentage
-FROM beverage b JOIN repondents r ON b.Respondent_ID = r.Respondent_ID
-              JOIN cities c ON c.City_ID = r.City_ID
-WHERE b.Brand_perception = "Negative" or b.Brand_perception = "Neutral" and Current_brands = 'codex'
+FROM fact_survey_responses f JOIN dim_repondents r ON b.Respondent_ID = r.Respondent_ID
+              JOIN dim_cities c ON c.City_ID = r.City_ID
+WHERE f.Brand_perception = "Negative" or f.Brand_perception = "Neutral" and Current_brands = 'codex'
 GROUP BY c.City, c.Tier
 ORDER BY percentage DESC;
 -------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ ORDER BY percentage DESC;
 /* 12. Where do respondents prefer to purchase energy drinks?*/
 
 select Purchase_location,count(Response_ID) as respondents
-from beverage
+from fact_survey_responses
 group by Purchase_location
 order by respondents desc
 -------------------------------------------------------------------------------------------
@@ -120,24 +120,24 @@ order by respondents desc
 /* 13.What factors influence respondents' purchase decisions, such as price range and limited edition packaging?*/
 
 select count(Response_ID)as respondents,Limited_edition_packaging
-from beverage
+from fact_survey_responses
 group by Limited_edition_packaging;
 
 select count(Response_ID)as respondents,Price_range
-from beverage
+from fact_survey_responses
 group by Price_range ;
 -------------------------------------------------------------------------------------------
 
 /* 14.Which area of business should we focus more on our product development? (Branding/taste/availability)*/
 
 select Reasons_for_choosing_brands,count(Response_ID)
-from beverage
+from fact_survey_responses
 WHERE Current_brands = "Codex"
 group by Reasons_for_choosing_brands
 
 
 SELECT Reasons_preventing_trying , count(Response_ID) as respondent
-from beverage
+from fact_survey_responses
 where Current_brands='codex'
 group by Reasons_preventing_trying
 order by respondent desc
@@ -147,7 +147,7 @@ order by respondent desc
 /* 15.Which Improvements Needed to codex? */
 
 SELECT Improvements_desired, count(Response_ID) AS respondent 
-FROM beverage
+FROM fact_survey_responses
 where Current_brands = 'codex'
 GROUP BY Improvements_desired
 ORDER BY respondent DESC;
@@ -155,7 +155,7 @@ ORDER BY respondent DESC;
 
 SELECT Brand_perception, count(Response_ID) AS respondent ,
 ROUND(COUNT(Response_ID) * 100.0 / SUM(COUNT(Response_ID)) OVER(), 2) AS respondent_percentage
-FROM beverage
+FROM fact_survey_responses
 where Current_brands = 'codex' 
 GROUP BY Brand_perception
 ORDER BY respondent DESC;
@@ -165,7 +165,7 @@ ORDER BY respondent DESC;
 /* 16.Which price_range is demanded for codex? */
 
 SELECT Price_range, count(Response_ID) AS respondent 
-FROM beverage
+FROM fact_survey_responses
 GROUP BY Price_range
 ORDER BY respondent DESC;
 -------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ ORDER BY respondent DESC;
 /* 17.What is the consuming timing for codex beverage? */
 
 SELECT Consume_time, count(Response_ID) AS respondent 
-FROM beverage
+FROM fact_survey_responses
 GROUP BY Consume_time
 ORDER BY respondent DESC;
 -------------------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ ORDER BY respondent DESC;
 /* 18.What is the topmost reason to consume Codex beverage? */
 
 SELECT Consume_reason, count(Response_ID) AS respondent 
-FROM beverage
+FROM fact_survey_responses
 GROUP BY Consume_reason
 ORDER BY respondent DESC;
 -------------------------------------------------------------------------------------------
