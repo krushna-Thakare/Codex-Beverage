@@ -15,26 +15,26 @@ Codex's target audience comprises young adults aged 19-30, including individuals
 
 ## Strategies
 
-**Package Deals and Festival Gift Sets:**
+* **Package Deals and Festival Gift Sets:**
    * Offer discounted packs and themed festival gift sets to attract customers during city celebrations.
 
-**Product Sampling Campaigns:**
+* **Product Sampling Campaigns:**
    * Implement product sampling campaigns in high-traffic areas such as malls, colleges, and gyms.
    * Offer free samples of Codex energy drink to allow potential customers to experience the product firsthand.
    * Collect feedback and testimonials from consumers to leverage in marketing materials and social proof.
 
-**Social Media Engagement:**
+* **Social Media Engagement:**
    * Utilize social media platforms to target the active 15 to 30 age group.
    * Introduce the product through targeted ads to generate interest and awareness.
 
-**Influencer Collaborations:**
+* **Influencer Collaborations:**
    * Partner with local influencers with 10k-500k followers.
    * Conduct giveaways and offer exclusive coupons through influencers to enhance brand perception and customer retention.
 
-**E-commerce and Paid Advertising:**
+* **E-commerce and Paid Advertising:**
    * Utilize PPC platforms on e-commerce sites to increase visibility and drive sales.
 
-**Guerilla Marketing Tactics:**
+* **Guerilla Marketing Tactics:**
    * Create exclusive displays in supermarkets to capture customer attention.
    * Participate in major local events to showcase the product and gather feedback.
 
