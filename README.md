@@ -1,3 +1,4 @@
+![Slide1](https://github.com/krushna-Thakare/Codex-Beverage/assets/154303001/94007ab4-fbe2-43be-91ff-1932c7bc03b1)
 
 Codex Energy Drink Marketing Strategy
 ## Overview
